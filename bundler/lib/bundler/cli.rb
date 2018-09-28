@@ -54,10 +54,14 @@ module Bundler
     def initialize(*args)
       super
 
-      custom_gemfile = options[:gemfile] || Bundler.settings[:gemfile]
-      if custom_gemfile && !custom_gemfile.empty?
-        Bundler::SharedHelpers.set_env "BUNDLE_GEMFILE", File.expand_path(custom_gemfile)
-        Bundler.reset_settings_and_root!
+      if Bundler.feature_flag.config_relative_to_cwd?
+        Bundler.settings.set_command_option_if_given :gemfile, options[:gemfile]
+      else
+        custom_gemfile = options[:gemfile] || Bundler.settings[:gemfile]
+        if custom_gemfile && !custom_gemfile.empty?
+          Bundler::SharedHelpers.set_env "BUNDLE_GEMFILE", File.expand_path(custom_gemfile)
+          Bundler.reset_settings_and_root!
+        end
       end
 
       Bundler.settings.set_command_option_if_given :retry, options[:retry]
