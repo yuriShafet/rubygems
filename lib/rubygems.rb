@@ -1360,5 +1360,3 @@ Gem::Specification.load_defaults
 require 'rubygems/core_ext/kernel_gem'
 require 'rubygems/core_ext/kernel_require'
 require 'rubygems/core_ext/kernel_warn'
-
-Gem.use_gemdeps
