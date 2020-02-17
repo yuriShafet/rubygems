@@ -13,9 +13,11 @@ unless defined?(OpenSSL::SSL)
   warn 'Skipping Gem::Request tests.  openssl not found.'
 end
 
+require 'rubygems/ext'
 require 'rubygems/remote_fetcher'
 require 'rubygems/package'
 require 'minitest/mock'
+require 'json'
 
 # = Testing Proxy Settings
 #
@@ -645,7 +647,6 @@ PeIQQkFng2VVot/WAQbv3ePqWq07g1BBcwIBAg==
     end
 
     def fetcher.s3_uri_signer(uri)
-      require 'json'
       s3_uri_signer = Gem::S3URISigner.new(uri)
       def s3_uri_signer.ec2_metadata_credentials_json
         JSON.parse($instance_profile)
