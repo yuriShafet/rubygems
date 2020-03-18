@@ -59,7 +59,7 @@ module Bundler
         :exe              => options[:exe],
         :bundler_version  => bundler_dependency_version,
         :github_username  => github_username.empty? ? "[USERNAME]" : github_username,
-        :required_ruby_version => Gem.ruby_version < Gem::Version.new("2.4.a") ? "2.3.0" : "2.4.0",
+        :required_ruby_version => "2.4.0",
       }
       ensure_safe_gem_name(name, constant_array)
 
@@ -160,7 +160,7 @@ module Bundler
         "For more information, see the RuboCop docs (https://docs.rubocop.org/en/stable/) " \
         "and the Ruby Style Guides (https://github.com/rubocop-hq/ruby-style-guide).")
         config[:rubocop] = true
-        config[:rubocop_version] = Gem.ruby_version < Gem::Version.new("2.4.a") ? "0.81.0" : "1.7"
+        config[:rubocop_version] = "1.7"
         Bundler.ui.info "RuboCop enabled in config"
         templates.merge!("rubocop.yml.tt" => ".rubocop.yml")
       end
