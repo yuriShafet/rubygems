@@ -100,6 +100,12 @@ Naming/HeredocDelimiterNaming:
   ForbiddenDelimiters:
     - ^RB$
 
+Performance/RegexpMatch:
+  Enabled: true
+  Exclude:
+    - lib/rubygems/dependency_installer.rb
+    - lib/rubygems/resolver.rb
+
 Performance/StartWith:
   Enabled: true
 
