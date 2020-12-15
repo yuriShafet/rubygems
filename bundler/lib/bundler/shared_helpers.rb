@@ -231,11 +231,7 @@ module Bundler
 
     def find_gemfile
       require_relative "../bundler"
-      given = if Bundler.feature_flag.config_relative_to_cwd?
-        Bundler.settings[:gemfile]
-      else
-        ENV["BUNDLE_GEMFILE"]
-      end
+      given = Bundler.settings[:gemfile]
       return given if given && !given.empty?
       find_file(*gemfile_names)
     end

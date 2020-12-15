@@ -295,13 +295,7 @@ module Bundler
         end
       end
 
-      config_root = if Bundler.feature_flag.config_relative_to_cwd?
-        current_config_root
-      else
-        app_config_root
-      end
-
-      config_root.join(app_config || ".bundle")
+      current_config_root.join(app_config || ".bundle")
     end
 
     def app_cache(custom_path = nil)
