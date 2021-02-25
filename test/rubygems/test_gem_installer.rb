@@ -1216,7 +1216,11 @@ gem 'other', version
   end
 
   def test_install_post_build_false
-    installer = setup_base_installer
+    @spec = util_spec 'a'
+
+    util_build_gem @spec
+
+    installer = util_installer @spec, @gemhome
 
     Gem.post_build do
       false
@@ -1258,7 +1262,11 @@ gem 'other', version
   end
 
   def test_install_pre_install_false
-    installer = setup_base_installer
+    @spec = util_spec 'a'
+
+    util_build_gem @spec
+
+    installer = util_installer @spec, @gemhome
 
     Gem.pre_install do
       false
