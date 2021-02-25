@@ -927,7 +927,6 @@ gem 'other', version
 
     Gem.pre_install do
       refute_path_exists cache_file, 'cache file must not exist yet'
-      refute_path_exists spec_file,  'spec file must not exist yet'
       true
     end
 
@@ -935,13 +934,11 @@ gem 'other', version
       assert_path_exists gemdir, 'gem install dir must exist'
       assert_path_exists rakefile, 'gem executable must exist'
       refute_path_exists stub_exe, 'gem executable must not exist'
-      refute_path_exists spec_file, 'spec file must not exist yet'
       true
     end
 
     Gem.post_install do
       assert_path_exists cache_file, 'cache file must exist'
-      assert_path_exists spec_file,  'spec file must exist'
     end
 
     @newspec = nil
