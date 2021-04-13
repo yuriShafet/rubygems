@@ -3,6 +3,7 @@ require_relative 'test_case'
 require 'rubygems'
 require 'rubygems/command'
 require 'rubygems/installer'
+require 'open3'
 require 'pathname'
 require 'tmpdir'
 require 'rbconfig'
@@ -356,7 +357,6 @@ class TestGem < Gem::TestCase
 
     install_specs a1
 
-    require "open3"
     output, status = Open3.capture2e(
       { "GEM_HOME" => Gem.paths.home, "DEBUG_RESOLVER" => "1" },
       *ruby_with_rubygems_in_load_path, "-e", "\"Gem.activate_bin_path('a', 'exec', '>= 0')\""
