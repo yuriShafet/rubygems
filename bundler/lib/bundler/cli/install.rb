@@ -83,7 +83,7 @@ module Bundler
       end
 
       Bundler::CLI::Common.output_fund_metadata_summary
-    rescue GemNotFound, VersionConflict => e
+    rescue GemNotFound, VersionConflict
       if options[:local] && Bundler.app_cache.exist?
         Bundler.ui.warn "Some gems seem to be missing from your #{Bundler.settings.app_cache_path} directory."
       end
@@ -95,10 +95,10 @@ module Bundler
           source 'https://rubygems.org'
         WARN
       end
-      raise e
-    rescue Gem::InvalidSpecificationException => e
+      raise
+    rescue Gem::InvalidSpecificationException
       Bundler.ui.warn "You have one or more invalid gemspecs that need to be fixed."
-      raise e
+      raise
     end
 
     private
