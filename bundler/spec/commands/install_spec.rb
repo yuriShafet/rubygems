@@ -334,7 +334,7 @@ RSpec.describe "bundle install with gem sources" do
         gem "rack"
       G
 
-      expect(err).to include("Your Gemfile has no gem server sources")
+      expect(err).to include("Could not find gem 'rack' in locally installed gems.")
     end
 
     it "creates a Gemfile.lock on a blank Gemfile" do
@@ -593,8 +593,7 @@ RSpec.describe "bundle install with gem sources" do
       G
 
       bundle :install, :quiet => true, :raise_on_error => false
-      expect(err).to include("Could not find gem 'rack'")
-      expect(err).to_not include("Your Gemfile has no gem server sources")
+      expect(err).to include("Could not find gem 'rack' in locally installed gems")
     end
   end
 
